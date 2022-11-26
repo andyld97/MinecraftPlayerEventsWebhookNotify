@@ -1,0 +1,5 @@
+appendServerName: false
+prefix: "[MC-SRV04]"
+joinMessage: "Player %s joined the game!"
+leaveMessage: "Player %s left the game!"
+webHookUrl: "http://your.url?param={0}"
