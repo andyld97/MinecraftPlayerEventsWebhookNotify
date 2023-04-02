@@ -6,10 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin
 {
-    // Initialize your webhook instance
     private Webhook wh;
 
     private FileConfiguration config;
+
+    private PlayerEventListener listener;
 
     @Override
     public void onEnable() {
@@ -23,15 +24,22 @@ public class Main extends JavaPlugin
             config.set("joinMessage", "Player %s joined the game!");
             config.set("leaveMessage", "Player %s left the game!");
             config.set("webHookUrl", "http://your.url?param={0}");
+            config.set("playerDeathNotify", true);
+            config.set("playerChatNotify", false);
+            config.set("playerChatMessage", "[%1$s]: %2$s");
+            config.set("playerChatName", "");
+            config.set("playerChatEndpoint", "");
             saveConfig();
         }
 
-        Bukkit.getPluginManager().registerEvents(new PlayerOnJoinListener(this, wh, config),this);
-        Bukkit.getPluginManager().registerEvents(new PlayerOnLeaveListener(this, wh, config),this);
+        listener = new PlayerEventListener(this, wh, config);
+        Bukkit.getPluginManager().registerEvents(listener,this);
+
+        listener.Start();
     }
 
     @Override
     public void onDisable() {
-        // nothing
+        listener.Stop();
     }
 }
