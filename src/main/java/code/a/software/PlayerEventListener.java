@@ -123,8 +123,13 @@ public class PlayerEventListener implements Listener, ActionListener {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             // If there is a valid answer with content, post it to the chat
-            if (response.statusCode() == 200 && response.body().length() > 0)
-                Bukkit.broadcastMessage(ChatColor.YELLOW + config.getString("playerChatName") + ": " + response.body());
+            if (response.statusCode() == 200 && response.body().length() > 0) {
+                String name = response.headers().firstValue("X-Name").get();
+                if (name == null || name.length() == 0)
+                    name = config.getString("playerChatName");
+
+                Bukkit.broadcastMessage(ChatColor.YELLOW + name  + ": " + response.body());
+            }
         }
         catch (Exception ignored)  {
         }
