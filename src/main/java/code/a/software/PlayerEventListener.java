@@ -70,7 +70,7 @@ public class PlayerEventListener implements Listener, ActionListener {
         if (config.getBoolean("appendServerName"))
             message += " (" + serverName + ")";
 
-        wh.NotifyWebHook(message);
+        wh.NotifyWebHook(message, 0);
     }
 
     @EventHandler
@@ -83,7 +83,7 @@ public class PlayerEventListener implements Listener, ActionListener {
         if (config.getBoolean("appendServerName"))
             message += " (" + serverName + ")";
 
-        wh.NotifyWebHook(message);
+        wh.NotifyWebHook(message, 0);
     }
 
     @EventHandler
@@ -97,7 +97,7 @@ public class PlayerEventListener implements Listener, ActionListener {
         String format = config.getString("playerChatMessage", "[%1$s]: %2$s");
 
         String generatedMessage = String.format(format, player, playerMessage);
-        wh.NotifyWebHook(generatedMessage);
+        wh.NotifyWebHook(generatedMessage, 1);
     }
 
     @EventHandler
@@ -106,7 +106,7 @@ public class PlayerEventListener implements Listener, ActionListener {
             return;
 
         String deathMessage = event.getDeathMessage();
-        wh.NotifyWebHook(deathMessage);
+        wh.NotifyWebHook(deathMessage, 2);
     }
 
     @Override

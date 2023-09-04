@@ -34,9 +34,10 @@ public class Webhook {
         return "Unknown";
     }
 
-    public void NotifyWebHook(String message) {
+    public void NotifyWebHook(String message, int level) {
         try {
-            String payload = "{\"type\": \"0\", \"application\": \"Minecraft\", \"message\": \"" + message + "\", \"scope\": \""+ prefix +"\", \"device\": \"" + getComputerName() + "\", \"userAgent\": \"Spigot/PluginV1.0.0\"}";
+
+            String payload = "{\"type\": \""+level+"\", \"application\": \"Minecraft\", \"message\": \"" + message + "\", \"scope\": \""+ prefix +"\", \"device\": \"" + getComputerName() + "\", \"userAgent\": \"Spigot/PluginV1.0.0\"}";
 
             HttpClient client = HttpClient.newHttpClient();
 

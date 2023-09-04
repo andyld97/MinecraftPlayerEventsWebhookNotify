@@ -18,7 +18,7 @@ webHookUrl: 'http://your.url'
 
 Note that `playerChatName` and `playerChatEndpoint` are currently only for internal usage (they are just not yet documented)
 
-## Response you will recieve
+## Response you will receive
 ```json
 {
    "level": 0,
@@ -30,3 +30,7 @@ Note that `playerChatName` and `playerChatEndpoint` are currently only for inter
    "userAgent": "Spigot/PluginV1.0.0"   
 }
 ```
+### Log Level
+- 0: Info (e.g. Player Join)
+- 1: Player Chat
+- 2: Death Messages
